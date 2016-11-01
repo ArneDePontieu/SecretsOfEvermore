@@ -13,13 +13,15 @@ public abstract class Character
     public int Level { get; set; }
     public int AttackLevel { get; set; }
     public int DefenseLevel { get; set; }
-
+    public float MovementSpeed { get; set; }
+    public float MaxHealth { get; set; }
+    
     //----------------------
     //PUBLIC METHODS
     //----------------------
 
-    public abstract void Update();
-    public abstract void Move();
+    //public abstract void Update();
+    //public abstract void Move();
 
 }
 

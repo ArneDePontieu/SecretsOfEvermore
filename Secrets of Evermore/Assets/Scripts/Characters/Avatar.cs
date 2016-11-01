@@ -8,7 +8,7 @@ public class Avatar : Character {
     //----------------------
 
         public bool IsSelected { get; set; }
-
+    
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
@@ -20,15 +20,7 @@ public class Avatar : Character {
     //----------------------
     //PUBLIC METHODS
     //----------------------
-
-    public override void Update()
-    {
-
-    }
-
-    public override void Move()
-    {
-
-    }
+    public Avatar() {}
+    
 
 }

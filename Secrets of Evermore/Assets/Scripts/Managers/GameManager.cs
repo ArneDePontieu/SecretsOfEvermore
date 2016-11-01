@@ -8,21 +8,13 @@ public class GameManager : MonoBehaviour
     //PUBLIC VARIABLES
     //----------------------
 
+    public static GameManager Instance = null;
     public UIManager UIManagerInstance;
     public CharacterManager CharManagerInstance;
-
-    //Get the instance of the game manager (only one game manager)
-    public static GameManager Instance
-    {
-        get { return _instance; }
-    }
-
+ 
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
-
-    //Instance of the game manager
-    private static GameManager _instance = new GameManager();
 
     //----------------------
     //PUBLIC METHODS
@@ -39,22 +31,18 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
     //----------------------
     //PRIVATE METHODS
     //----------------------
 
-    //Private constructor
-    private GameManager()
+    void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+        Instance = this;
         UIManagerInstance = new UIManager();
         CharManagerInstance = new CharacterManager();
+
+        CharManagerInstance.Initialize();
     }
-
-
-
-
-
-
-
-
 }

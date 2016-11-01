@@ -5,8 +5,7 @@ public abstract class Weapon : Item
 {
 
     public float AttacksPerSecond;
-    public float MinDamagerPerAttack;
-    public float MaxDamagerPerAttack;
+    public float AttackPower;
     public DamageType TypeOfDamage;
     public WeaponType TypeOfWeapon;
 
@@ -22,6 +21,9 @@ public abstract class Weapon : Item
         TwoHander
     }
 
-    
-
+    public Weapon(WeaponType wType, DamageType dType)
+    {
+        TypeOfWeapon = wType;
+        TypeOfDamage = dType;
+    }
 }

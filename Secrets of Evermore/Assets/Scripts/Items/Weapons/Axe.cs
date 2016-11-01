@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Axe : MonoBehaviour {
+public class Axe : Weapon {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public Axe(WeaponType wType, DamageType dType) :base(wType,dType)
+    {
+        
+    }
+
 }

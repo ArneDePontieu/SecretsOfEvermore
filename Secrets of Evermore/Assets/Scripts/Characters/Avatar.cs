@@ -9,5 +9,4 @@ public class Avatar : Character
 
     public Avatar() { }
 
-
 }

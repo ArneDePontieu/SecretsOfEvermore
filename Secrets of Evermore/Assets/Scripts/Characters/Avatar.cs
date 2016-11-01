@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Avatar : Character {
+public class Avatar : Character
+{
 
     //----------------------
     //PUBLIC VARIABLES
     //----------------------
 
-        public bool IsSelected { get; set; }
-    
+    public bool IsSelected { get; set; }
+    public VisualCharacter VCharacter { get; set; }
+
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
@@ -20,7 +22,7 @@ public class Avatar : Character {
     //----------------------
     //PUBLIC METHODS
     //----------------------
-    public Avatar() {}
-    
+    public Avatar() { }
+
 
 }

@@ -90,6 +90,42 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &64239934 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011775555154, guid: 6cef407cb6ee6ed4ba98549bd2484800,
+    type: 2}
+  m_PrefabInternal: {fileID: 996629091}
+--- !u!61 &64239938
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 64239934}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+--- !u!50 &64239939
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 64239934}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &608463027
 Prefab:
   m_ObjectHideFlags: 0
@@ -127,7 +163,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010153822370, guid: 8f3eedde76c2ec74383a780f5cce989f, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1000010407282104, guid: 8f3eedde76c2ec74383a780f5cce989f, type: 2}
       propertyPath: m_Name
@@ -175,7 +211,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1001 &996629091
 Prefab:
   m_ObjectHideFlags: 0
@@ -213,11 +249,52 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000014273351374, guid: 6cef407cb6ee6ed4ba98549bd2484800, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6cef407cb6ee6ed4ba98549bd2484800, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1398988601 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010407282104, guid: 8f3eedde76c2ec74383a780f5cce989f,
+    type: 2}
+  m_PrefabInternal: {fileID: 608463027}
+--- !u!4 &1398988604 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000010153822370, guid: 8f3eedde76c2ec74383a780f5cce989f,
+    type: 2}
+  m_PrefabInternal: {fileID: 608463027}
+--- !u!61 &1398988605
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1398988601}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+--- !u!50 &1398988606
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1398988601}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1421250371
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,12 +375,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1421250371}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1398988604}
   m_RootOrder: 0
 --- !u!1001 &1933180672
 Prefab:
@@ -342,7 +419,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012521114068, guid: a23187258d2814641bcae3b57de6a188, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212000011495208840, guid: a23187258d2814641bcae3b57de6a188,
         type: 2}

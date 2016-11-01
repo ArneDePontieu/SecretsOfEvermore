@@ -12,7 +12,7 @@ public class VisualCharacter : MonoBehaviour
     //PUBLIC VARIABLES
     //----------------------
 
-    public Avatar info;
+    public Avatar Info;
 
     //----------------------
     //PRIVATE METHODS
@@ -24,7 +24,7 @@ public class VisualCharacter : MonoBehaviour
 
     public void Update()
     {
-        if (info != null)
+        if (Info != null)
         {
             Move();
         }
@@ -33,13 +33,13 @@ public class VisualCharacter : MonoBehaviour
     public void Move()
     {
         //Move with keys if IsSelected is true, otherwise move automatically    
-        if (info.IsSelected)
+        if (Info.IsSelected)
         {
             //Move with the arrow keys
             var move = new Vector3();
             move.x = Input.GetAxis("Horizontal");
             move.y = Input.GetAxis("Vertical");
-            transform.position += move * info.MovementSpeed * Time.deltaTime;
+            transform.position += move * Info.MovementSpeed * Time.deltaTime;
         }
         else
         {

@@ -32,6 +32,33 @@ public class CharacterManager
         
     }
 
+    public void Update()
+    {
+        //Swap character when pressing spacebar
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SelectCharacter(_selectedCharacterID + 1);
+        }
+
+    }
+
+    private void SelectCharacter(int charID)
+    {
+        //Check if the ID is different than the previous
+        if(charID != _selectedCharacterID)
+        {
+            //Check if the ID is bigger than the size, if so reset
+            if(charID>=_characterList.Count)
+            {
+                charID = 0;
+            }
+            //Remove the IsSelected from the previous selected char and set it for the new
+            _characterList[_selectedCharacterID].IsSelected = false;
+            _selectedCharacterID = charID;
+            _characterList[_selectedCharacterID].IsSelected = true;
+        }
+    }
+
     public void Initialize()
     {
         InitializeLevel();

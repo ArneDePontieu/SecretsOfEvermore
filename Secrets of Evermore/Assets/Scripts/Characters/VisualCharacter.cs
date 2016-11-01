@@ -32,32 +32,10 @@ public class VisualCharacter : MonoBehaviour
 
     public void Move()
     {
-
-        //Get the postition
-        var pos = transform.position;
-
         //Move with keys if IsSelected is true, otherwise move automatically    
         if (info.IsSelected)
         {
-            /*
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                pos.x -= info.MovementSpeed * Time.deltaTime;
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                pos.x += info.MovementSpeed * Time.deltaTime;
-
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                pos.y += info.MovementSpeed * Time.deltaTime;
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                pos.y -= info.MovementSpeed * Time.deltaTime;
-            }
-            */
+            //Move with the arrow keys
             var move = new Vector3();
             move.x = Input.GetAxis("Horizontal");
             move.y = Input.GetAxis("Vertical");
@@ -68,7 +46,6 @@ public class VisualCharacter : MonoBehaviour
             //autofollow
         }
 
-        transform.position = pos;
 
 
     }

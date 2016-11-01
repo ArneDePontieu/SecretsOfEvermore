@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     //What happens when the game updates
     void Update()
     {
-
+        CharManagerInstance.Update();
     }
 
     //----------------------

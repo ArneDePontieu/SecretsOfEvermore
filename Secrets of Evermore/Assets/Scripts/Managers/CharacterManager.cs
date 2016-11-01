@@ -7,9 +7,6 @@ public class CharacterManager
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
-
-    //List of controllable characters
-    private List<Avatar> _characterList = new List<Avatar>();
     //List of enemies
     private List<Enemy> _enemyList = new List<Enemy>();
     //the ID of the selected character
@@ -20,6 +17,9 @@ public class CharacterManager
     //----------------------
     //PUBLIC VARIABLES
     //----------------------
+
+    //List of controllable characters
+    public List<Avatar> CharacterList = new List<Avatar>();
 
     //----------------------
     //PRIVATE METHODS
@@ -50,21 +50,21 @@ public class CharacterManager
         if (charID != _selectedCharacterID)
         {
             //Check if the ID is bigger than the size, if so reset
-            if (charID >= _characterList.Count)
+            if (charID >= CharacterList.Count)
             {
                 charID = 0;
             }
             //Remove the IsSelected from the previous selected char and set it for the new
-            _characterList[_selectedCharacterID].IsSelected = false;
+            CharacterList[_selectedCharacterID].IsSelected = false;
             _selectedCharacterID = charID;
-            _characterList[_selectedCharacterID].IsSelected = true;
+            CharacterList[_selectedCharacterID].IsSelected = true;
 
             //Change the camera parent
-            _camera.transform.parent = _characterList[_selectedCharacterID].VCharacter.transform;
+            _camera.transform.parent = CharacterList[_selectedCharacterID].VCharacter.transform;
 
             //Set the camera position on the location of the character
             var camPos = _camera.transform.position;
-            camPos = _characterList[_selectedCharacterID].VCharacter.transform.position;
+            camPos = CharacterList[_selectedCharacterID].VCharacter.transform.position;
             camPos.z = -10;
             _camera.transform.position = camPos;
         }
@@ -104,8 +104,8 @@ public class CharacterManager
         dog.Health = dog.MaxHealth;
 
         //Add them to the list
-        _characterList.Add(human);
-        _characterList.Add(dog);
+        CharacterList.Add(human);
+        CharacterList.Add(dog);
 
         //Find all the avatar tagged mobs
         var playerChars = GameObject.FindGameObjectsWithTag("Avatar");
@@ -113,16 +113,16 @@ public class CharacterManager
         foreach (var aObject in playerChars)
         {
             //loop through the avatar list to assign the info to them
-            for (int i = 0; i < _characterList.Count; i++)
+            for (int i = 0; i < CharacterList.Count; i++)
             {
                 //check if the name is equal --> correct object
-                if (aObject.gameObject.name == _characterList[i].Name)
+                if (aObject.gameObject.name == CharacterList[i].Name)
                 {
                     //Assign the info and the visual character so we can use this later for the camera
-                    _characterList[i].VCharacter = aObject.GetComponent<VisualCharacter>();
-                    aObject.GetComponent<VisualCharacter>().Info = _characterList[i];
+                    CharacterList[i].VCharacter = aObject.GetComponent<VisualCharacter>();
+                    aObject.GetComponent<VisualCharacter>().Info = CharacterList[i];
                     //We start with the boy as character, so make the camera child and set the selected ID to the boy ID
-                    if (_characterList[i].Name == "Boy")
+                    if (CharacterList[i].Name == "Boy")
                     {
                         SelectCharacter(i);
                     }

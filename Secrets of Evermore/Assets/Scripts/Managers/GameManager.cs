@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
     public UIManager UIManagerInstance;
     public CharacterManager CharManagerInstance;
+    public Inventory CharacterInventory;
  
     //----------------------
     //PRIVATE VARIABLES
@@ -23,13 +24,15 @@ public class GameManager : MonoBehaviour
     //First thing that gets executed after object is created
     void Start()
     {
-
+        UIManagerInstance.Initialize();
+        CharacterInventory.Initialize();
     }
 
     //What happens when the game updates
     void Update()
     {
-        CharManagerInstance.Update();
+        CharManagerInstance.Refresh();
+        UIManagerInstance.Refresh();
     }
 
     //----------------------
@@ -39,10 +42,15 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        //Create the manager instances
         Instance = this;
         UIManagerInstance = new UIManager();
         CharManagerInstance = new CharacterManager();
 
+        //Create the inventory
+        CharacterInventory = new Inventory();
+
+        //Initialize the character manager
         CharManagerInstance.Initialize();
     }
 }

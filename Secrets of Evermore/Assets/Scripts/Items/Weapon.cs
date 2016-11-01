@@ -4,7 +4,6 @@ using System.Collections;
 public abstract class Weapon : Item
 {
 
-    public float AttacksPerSecond;
     public float AttackPower;
     public DamageType TypeOfDamage;
     public WeaponType TypeOfWeapon;
@@ -21,9 +20,11 @@ public abstract class Weapon : Item
         TwoHander
     }
 
-    public Weapon(WeaponType wType, DamageType dType)
+    public Weapon(WeaponType wType, DamageType dType, float attackPower,string name):base(name)
     {
         TypeOfWeapon = wType;
         TypeOfDamage = dType;
+        AttackPower = attackPower;
+        TypeItem = ItemType.Weapon;
     }
 }

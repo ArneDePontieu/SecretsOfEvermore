@@ -4,7 +4,9 @@ using System.Collections;
 public class Armor : Item
 {
 
-    public float DefenceValue = 0.0f;
+    public float DefenceValue;
+    public ArmorType TypeArmor;
+
     public enum ArmorType
     {
         Head,
@@ -17,5 +19,14 @@ public class Armor : Item
         Belt
     }
 
-    public ArmorType TypeArmor;
+    //--------------------
+    //METHODS
+    //--------------------
+
+    public Armor(float defenceValue,string name):base(name)
+    {
+        DefenceValue = defenceValue;
+        TypeItem = ItemType.Armor;
+    }
+
 }

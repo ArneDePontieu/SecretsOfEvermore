@@ -7,10 +7,31 @@ public abstract class Item
     public enum ItemType
     {
         Armor,
-        Weapon
+        Weapon,
+        Food,
+        Quest
     }
-    public ItemType TypeItem;
 
+    //Item Type
+    public ItemType TypeItem;
     //Amount of items
     public int Amount;
+    //Name of the item
+    public string Name;
+
+    //-------------------
+    //METHODS
+    //--------------------
+
+    public Item(string name)
+    {
+        Name = name;
+    }
+
+    //to create an empty item
+    public Item()
+    {
+
+    }
+
 }

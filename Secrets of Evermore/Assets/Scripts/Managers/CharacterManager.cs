@@ -34,7 +34,7 @@ public class CharacterManager
 
     }
 
-    public void Update()
+    public void Refresh()
     {
         //Swap character when pressing spacebar
         if (Input.GetKeyDown(KeyCode.Space))

@@ -23,10 +23,11 @@ public class Armor : Item
     //METHODS
     //--------------------
 
-    public Armor(float defenceValue,string name):base(name)
+    public Armor(float defenceValue,string name, ArmorType type):base(name)
     {
         DefenceValue = defenceValue;
         TypeItem = ItemType.Armor;
+        TypeArmor = type;
     }
 
 }

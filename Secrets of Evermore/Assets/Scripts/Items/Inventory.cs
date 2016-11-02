@@ -10,9 +10,9 @@ public class Inventory
 
     public void Initialize()
     {
-        AddItem(new Spear(Weapon.WeaponType.OneHander,Weapon.DamageType.Physical,10,"SuperSpear"));
-        AddItem(new Spear(Weapon.WeaponType.OneHander, Weapon.DamageType.Physical, 10, "SuperSpear"));
-        AddItem(new Armor(5,"SuperChest"));
+        //AddItem(new Spear(Weapon.WeaponType.OneHander,Weapon.DamageType.Physical,10,"SuperSpear"));
+        //AddItem(new Spear(Weapon.WeaponType.OneHander, Weapon.DamageType.Physical, 10, "SuperSpear"));
+        AddItem(new Armor(5,"SuperChest",Armor.ArmorType.Chest));
     }
 
     public void AddItem(Item item)
@@ -24,7 +24,7 @@ public class Inventory
         }
 
         //Set the inventory full
-        if (ItemList.Count <= GameManager.Instance.UIManagerInstance.InvPanel.InventorySize)
+        if (ItemList.Count >= GameManager.Instance.UIManagerInstance.InvPanel.InventorySize)
         {
             IsInvFull = true;
         }

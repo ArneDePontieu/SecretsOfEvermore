@@ -91,6 +91,7 @@ public class CharacterManager
         human.IsSelected = true;
         human.MaxHealth = 100.0f;
         human.Health = human.MaxHealth;
+        
 
         //Create the dog
         Avatar dog = new Avatar();

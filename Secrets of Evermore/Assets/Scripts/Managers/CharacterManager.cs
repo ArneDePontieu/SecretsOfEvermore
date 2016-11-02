@@ -25,25 +25,6 @@ public class CharacterManager
     //PRIVATE METHODS
     //----------------------
 
-    //----------------------
-    //PUBLIC METHODS
-    //----------------------
-
-    public CharacterManager()
-    {
-
-    }
-
-    public void Refresh()
-    {
-        //Swap character when pressing spacebar
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SelectCharacter(_selectedCharacterID + 1);
-        }
-
-    }
-
     private void SelectCharacter(int charID)
     {
         //Check if the ID is different than the previous
@@ -70,6 +51,25 @@ public class CharacterManager
         }
     }
 
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
+
+    public CharacterManager()
+    {
+
+    }
+
+    public void Refresh()
+    {
+        //Swap character when pressing spacebar
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SelectCharacter(_selectedCharacterID + 1);
+        }
+
+    }
+
     public void Initialize()
     {
         InitializeLevel();
@@ -91,7 +91,7 @@ public class CharacterManager
         human.IsSelected = true;
         human.MaxHealth = 100.0f;
         human.Health = human.MaxHealth;
-        
+
 
         //Create the dog
         Avatar dog = new Avatar();
@@ -130,6 +130,58 @@ public class CharacterManager
                     break;
                 }
             }
+        }
+
+        //Update the character stats on launch
+        UpdateCharacterStats();
+    }
+
+    public void UpdateCharacterStats()
+    {
+        //Reset the bonusarmor and damage
+        foreach (var character in CharacterList)
+        {
+            character.BonusArmorDefence = 0;
+            character.BonusWeaponDamage = 0;
+        }
+
+        float bonusArmor = 0.0f;
+        float bonusDamage = 0.0f;
+
+        //Check the inventory for items and update the stats
+        foreach (var item in GameManager.Instance.CharacterInventory.ItemList)
+        {
+            if (item.TypeItem == Item.ItemType.Armor || item.TypeItem == Item.ItemType.Weapon)
+            {
+                //Do something depending on what the item is
+                switch (item.TypeItem)
+                {
+                    //What to do if it's a weapon
+                    case Item.ItemType.Weapon:
+                        var weapon = item as Weapon;
+
+                        //add bonus damage
+                        if (weapon.TypeOfDamage != Weapon.DamageType.Magical)
+                        {
+                            bonusDamage += weapon.AttackPower;
+                        }
+                        break;
+                    //What to do if it's armor
+                    case Item.ItemType.Armor:
+                        var armor = item as Armor;
+
+                        //add bonus armor
+                        bonusArmor += armor.DefenceValue;
+                        break;
+                }
+            }
+        }
+
+        //Set the bonusarmor and damage to the new value
+        foreach (var character in CharacterList)
+        {
+            character.BonusArmorDefence = bonusArmor;
+            character.BonusWeaponDamage = bonusDamage;
         }
     }
 }

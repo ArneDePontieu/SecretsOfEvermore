@@ -15,7 +15,7 @@ public abstract class Item
     //Item Type
     public ItemType TypeItem;
     //Amount of items
-    public int Amount;
+    public int Amount = 1;
     //Name of the item
     public string Name;
 

@@ -16,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - ItemLayer
+  - CharacterLayer
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: BackGround
     uniqueID: 300489339
+    locked: 0
+  - name: ItemLayer
+    uniqueID: 797612765
     locked: 0
   - name: ForeGround
     uniqueID: 2819638199

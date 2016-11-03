@@ -21,7 +21,7 @@ public class Inventory
         AddItem(new Armor(1, "Leather Belt", Armor.ArmorType.Belt));
     }
 
-    public void AddItem(Item item)
+    public bool AddItem(Item item)
     {
         //Check the inventory to see if you found an upgrade
         if (item.TypeItem == Item.ItemType.Armor || item.TypeItem == Item.ItemType.Weapon)
@@ -41,7 +41,7 @@ public class Inventory
                             if (weaponInInv.AttackPower < weaponFound.AttackPower)
                             {
                                 ItemList[i] = item;
-                                break;
+                                return true;
                             }
                         }
                         break;
@@ -55,7 +55,7 @@ public class Inventory
                             if (armorInInv.DefenceValue < armorFound.DefenceValue)
                             {
                                 ItemList[i] = item;
-                                break;
+                                return true;
                             }
                         }
                         break;
@@ -67,6 +67,7 @@ public class Inventory
         if (!IsInvFull)
         {
             ItemList.Add(item);
+            return true;
         }
 
         //Set the inventory full
@@ -74,6 +75,8 @@ public class Inventory
         {
             IsInvFull = true;
         }
+
+        return false;
     }
 
     public void RemoveItem(Item item)

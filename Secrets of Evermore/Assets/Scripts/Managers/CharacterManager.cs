@@ -72,15 +72,11 @@ public class CharacterManager
 
     public void Initialize()
     {
-        InitializeLevel();
+        InitializeCharactersLevel();
     }
 
-    public void InitializeLevel()
+    public void InitializeCharacterStats()
     {
-        //Put the camera in a variable
-        var camera = GameObject.FindGameObjectWithTag("MainCamera");
-        _camera = camera;
-
         //Create the human
         Avatar human = new Avatar();
         human.Name = "Boy";
@@ -106,7 +102,17 @@ public class CharacterManager
 
         //Add them to the list
         CharacterList.Add(human);
-        CharacterList.Add(dog);
+        CharacterList.Add(dog);       
+
+        //Update the character stats on launch
+        UpdateCharacterStats();
+    }
+
+    public void InitializeCharactersLevel()
+    {
+        //Put the camera in a variable
+        var camera = GameObject.FindGameObjectWithTag("MainCamera");
+        _camera = camera;
 
         //Find all the avatar tagged mobs
         var playerChars = GameObject.FindGameObjectsWithTag("Avatar");
@@ -131,9 +137,6 @@ public class CharacterManager
                 }
             }
         }
-
-        //Update the character stats on launch
-        UpdateCharacterStats();
     }
 
     public void UpdateCharacterStats()

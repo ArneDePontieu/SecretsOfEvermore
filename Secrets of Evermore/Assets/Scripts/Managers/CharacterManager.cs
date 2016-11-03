@@ -35,6 +35,7 @@ public class CharacterManager
             {
                 charID = 0;
             }
+
             //Remove the IsSelected from the previous selected char and set it for the new
             CharacterList[_selectedCharacterID].IsSelected = false;
             _selectedCharacterID = charID;
@@ -66,6 +67,13 @@ public class CharacterManager
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SelectCharacter(_selectedCharacterID + 1);
+        }
+
+
+        //Give the info of the selected character to the other characters
+        for (int i = 0; i < CharacterList.Count; i++)
+        {
+            CharacterList[i].VCharacter.SelectedChar = CharacterList[_selectedCharacterID].VCharacter;
         }
 
     }
@@ -137,6 +145,13 @@ public class CharacterManager
                 }
             }
         }
+
+        //Give the info of the selected character to the other characters
+        for (int i = 0; i < CharacterList.Count; i++)
+        {
+            CharacterList[i].VCharacter.SelectedChar = CharacterList[_selectedCharacterID].VCharacter;
+        }
+
     }
 
     public void UpdateCharacterStats()

@@ -8,11 +8,14 @@ public class VisualCharacter : MonoBehaviour
     //PRIVATE VARIABLES
     //----------------------
 
+    private float followDistance = 3.0f;
+
     //----------------------
     //PUBLIC VARIABLES
     //----------------------
 
     public Avatar Info;
+    public VisualCharacter SelectedChar;
 
     //----------------------
     //PRIVATE METHODS
@@ -43,7 +46,15 @@ public class VisualCharacter : MonoBehaviour
         }
         else
         {
-            //autofollow
+            if(SelectedChar!=null)
+            {
+                //autofollow
+                var distanceVector = SelectedChar.transform.position - transform.position;
+                if (distanceVector.magnitude > followDistance)
+                {
+                    transform.position = transform.position + (distanceVector.normalized * Time.deltaTime * Info.MovementSpeed);
+                }
+            }
         }
 
 

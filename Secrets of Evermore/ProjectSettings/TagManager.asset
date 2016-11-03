@@ -7,6 +7,7 @@ TagManager:
   - Avatar
   - InventoryPanel
   - CharacterPanel
+  - LevelObjects
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - ItemLayer
   - CharacterLayer
-  - 
+  - LevelLayer
   - 
   - 
   - 

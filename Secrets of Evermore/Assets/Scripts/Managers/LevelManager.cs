@@ -52,8 +52,8 @@ public class LevelManager
         switch (level)
         {
             case 1:
-                spawnList.Add(new SpawnInfo(new Axe(Weapon.WeaponType.TwoHander, Weapon.DamageType.Physical, 20, "Axe of Doom"), 5, 5));
-                spawnList.Add(new SpawnInfo(new Armor(50,"Mithril Helmet",Armor.ArmorType.Head), -5, 5));
+                spawnList.Add(new SpawnInfo(new Axe(Weapon.WeaponType.TwoHander, Weapon.DamageType.Physical, 20, "Axe of Doom"), 3, 3));
+                spawnList.Add(new SpawnInfo(new Armor(50,"Mithril Helmet",Armor.ArmorType.Head), -3, 5));
                 break;
         }
 

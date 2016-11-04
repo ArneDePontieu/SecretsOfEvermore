@@ -36,10 +36,17 @@ public class LevelManager
 
     }
 
+    public void FinishLevel()
+    {
+        GameManager.Instance.UIManagerInstance.FinLevelPanel.gameObject.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+
     public void LoadLevel(int level)
     {
         if (level <= SceneManager.sceneCount)
         {
+            Time.timeScale = 1.0f;
             SceneManager.LoadScene(level);
         }
     }

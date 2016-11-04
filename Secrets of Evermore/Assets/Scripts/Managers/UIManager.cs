@@ -8,6 +8,7 @@ public class UIManager
     //PUBLIC VARIABLES
     public InventoryPanel InvPanel;
     public CharacterPanel CharPanel;
+    public FinishLevelPanel FinLevelPanel;
 
     public bool IsInventoryActive = false;
     public bool IsCharPanelActive = false;
@@ -20,6 +21,7 @@ public class UIManager
         //Find and assign
         InvPanel = GameObject.FindGameObjectWithTag("InventoryPanel").GetComponent<InventoryPanel>();
         CharPanel = GameObject.FindGameObjectWithTag("CharacterPanel").GetComponent<CharacterPanel>();
+        FinLevelPanel = GameObject.FindGameObjectWithTag("FinishedLevelPanel").GetComponent<FinishLevelPanel>();
         NotificationText = GameObject.FindGameObjectWithTag("PickupText").GetComponent<Text>();
 
         //Initialize
@@ -29,6 +31,7 @@ public class UIManager
         //Hide the panels
         InvPanel.gameObject.SetActive(false);
         CharPanel.gameObject.SetActive(false);
+        FinLevelPanel.gameObject.SetActive(false);
         NotificationText.gameObject.SetActive(false);
     }
 

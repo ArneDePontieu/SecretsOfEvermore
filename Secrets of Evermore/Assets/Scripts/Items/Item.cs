@@ -8,7 +8,6 @@ public abstract class Item
     {
         Armor,
         Weapon,
-        Food,
         Quest
     }
 
@@ -27,11 +26,4 @@ public abstract class Item
     {
         Name = name;
     }
-
-    //to create an empty item
-    public Item()
-    {
-
-    }
-
 }

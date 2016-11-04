@@ -14,10 +14,10 @@ public class LevelManager
     public struct SpawnInfo
     {
         public Item item;
-        public int xPos;
-        public int yPos;
+        public float xPos;
+        public float yPos;
 
-        public SpawnInfo(Item it, int x, int y)
+        public SpawnInfo(Item it, float x, float y)
         {
             item = it;
             xPos = x;
@@ -38,10 +38,10 @@ public class LevelManager
 
     public void LoadLevel(int level)
     {
-        if (level<=SceneManager.sceneCount)
+        if (level <= SceneManager.sceneCount)
         {
             SceneManager.LoadScene(level);
-        }        
+        }
     }
 
     public List<SpawnInfo> GetSpawnList(int level)
@@ -52,8 +52,8 @@ public class LevelManager
         switch (level)
         {
             case 1:
-                spawnList.Add(new SpawnInfo(new Axe(Weapon.WeaponType.TwoHander, Weapon.DamageType.Physical, 20, "Axe of Doom"), 3, 3));
-                spawnList.Add(new SpawnInfo(new Armor(50,"Mithril Helmet",Armor.ArmorType.Head), -3, 5));
+                spawnList.Add(new SpawnInfo(new Quest("Golden Key"), 9.7f, -7.5f));
+                spawnList.Add(new SpawnInfo(new Armor(5.0f, "Magical Pants", Armor.ArmorType.Pants), -9.5f, 4.2f));
                 break;
         }
 

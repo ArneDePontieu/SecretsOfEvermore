@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class VisualItem : MonoBehaviour {
 
@@ -36,6 +37,11 @@ public class VisualItem : MonoBehaviour {
                 if(isPickedUp)
                 {
                     Destroy(this.gameObject);
+                    GameManager.Instance.UIManagerInstance.NotificationText.gameObject.SetActive(false);
+                }
+                else
+                {
+                    GameManager.Instance.UIManagerInstance.NotificationText.text = "You can't pick up this item because you already have a better item in your inventory.";
                 }
             }
         }
@@ -43,11 +49,27 @@ public class VisualItem : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        _canPickUp = true;
+        if (other.gameObject.tag=="Avatar") {
+            _canPickUp = true;
+
+            //enable the text
+            GameManager.Instance.UIManagerInstance.NotificationText.gameObject.SetActive(true);
+            //set the notification
+            StringWriter writer = new StringWriter();
+            writer.Write("Press \'F\' to pick up ");
+            writer.Write(Info.Name);
+            GameManager.Instance.UIManagerInstance.NotificationText.text = writer.ToString();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        _canPickUp = false;
+        if (other.gameObject.tag == "Avatar")
+        {
+            _canPickUp = false;
+
+            //disable the text
+            GameManager.Instance.UIManagerInstance.NotificationText.gameObject.SetActive(false);
+        }
     }
 }

@@ -9,41 +9,38 @@ public class Trigger : MonoBehaviour
     public bool TriggerOnce;
     public List<GameObject> TriggerLinks;
 
-    //PRIVATE VARIABLES
-
-    //Delegate for the actions
-    private delegate void UpdateAction();
-    UpdateAction _action;
+    public bool ItemRequired = false;
+    public string ItemName;
 
     //PRIVATE METHODS
-    void Update()
-    {
-        if(_action!=null)
-        {
-            _action();
-        }
-    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        _action = null;
-
         foreach (var link in TriggerLinks)
         {
-            _action += link.GetComponent<MovingObject>().Open;
+            //Only activate if you have the required item, unless you don't need an item
+            if ((ItemRequired && GameManager.Instance.CharacterInventory.CheckForItem(ItemName)) || !ItemRequired)
+            {
+                link.GetComponent<MovingObject>().AddActivatedTrigger(other.gameObject.GetInstanceID());
+
+                //remove the item from your inventory
+                if(ItemRequired)
+                {
+                    GameManager.Instance.CharacterInventory.RemoveItem(ItemName);
+                }
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (!TriggerOnce)
+        if (!TriggerOnce && !ItemRequired)
         {
-            _action = null;
-
             foreach (var link in TriggerLinks)
             {
-                _action += link.GetComponent<MovingObject>().Close;
+                link.GetComponent<MovingObject>().RemoveActivatedTrigger(other.gameObject.GetInstanceID());
             }
+
         }
     }
 }

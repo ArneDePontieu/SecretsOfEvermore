@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013672546752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -67,10 +67,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2003c18d4462e49923106531d5e551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  IsMoving: 1
-  OpenPosition: {x: 0, y: 6, z: 0}
-  ClosedPosition: {x: 0, y: 2, z: 0}
+  MoveSpeed: 2
+  IsMoving: 0
+  OpenPosition: {x: 0, y: 0, z: 0}
+  ClosedPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &212000012319365298
 SpriteRenderer:
   m_ObjectHideFlags: 1

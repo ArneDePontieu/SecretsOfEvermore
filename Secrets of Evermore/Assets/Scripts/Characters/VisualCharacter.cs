@@ -8,7 +8,8 @@ public class VisualCharacter : MonoBehaviour
     //PRIVATE VARIABLES
     //----------------------
 
-    private float followDistance = 3.0f;
+    private float _followDistance = 2.0f;
+    private bool _isFollowing = false;
 
     //----------------------
     //PUBLIC VARIABLES
@@ -44,20 +45,39 @@ public class VisualCharacter : MonoBehaviour
             move.y = Input.GetAxis("Vertical");
             transform.position += move * Info.MovementSpeed * Time.deltaTime;
         }
-        else
+
+        if (SelectedChar != null)
         {
-            if(SelectedChar!=null)
+            //Distance between the character and the selecterdcharacter
+            var distanceVector = GetDistanceVector(SelectedChar.transform.transform.position);
+
+            //Follow if very far and come close
+            if (_isFollowing)
             {
-                //autofollow
-                var distanceVector = SelectedChar.transform.position - transform.position;
-                if (distanceVector.magnitude > followDistance)
+                if (distanceVector.magnitude < _followDistance)
                 {
-                    transform.position = transform.position + (distanceVector.normalized * Time.deltaTime * Info.MovementSpeed);
+                    _isFollowing = false;
                 }
+            }
+            else
+            {
+                if (distanceVector.magnitude > _followDistance+4.0f)
+                {
+                    _isFollowing = true;
+                }
+            }
+
+            if(_isFollowing)
+            {
+                transform.position = transform.position + (distanceVector.normalized * Time.deltaTime * Info.MovementSpeed);
             }
         }
 
+    }
 
-
+    //PRIVATE METHODS
+    private Vector3 GetDistanceVector(Vector3 target)
+    {
+        return target - transform.position;
     }
 }

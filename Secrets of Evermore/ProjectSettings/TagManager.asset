@@ -8,6 +8,7 @@ TagManager:
   - InventoryPanel
   - CharacterPanel
   - LevelObjects
+  - PickupText
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class UIManager
@@ -11,12 +12,15 @@ public class UIManager
     public bool IsInventoryActive = false;
     public bool IsCharPanelActive = false;
 
+    public Text NotificationText;
+
     //TO INITIALIZE THE PANELS
     public void Initialize()
     {
         //Find and assign
         InvPanel = GameObject.FindGameObjectWithTag("InventoryPanel").GetComponent<InventoryPanel>();
         CharPanel = GameObject.FindGameObjectWithTag("CharacterPanel").GetComponent<CharacterPanel>();
+        NotificationText = GameObject.FindGameObjectWithTag("PickupText").GetComponent<Text>();
 
         //Initialize
         InvPanel.Initialize();
@@ -25,6 +29,7 @@ public class UIManager
         //Hide the panels
         InvPanel.gameObject.SetActive(false);
         CharPanel.gameObject.SetActive(false);
+        NotificationText.gameObject.SetActive(false);
     }
 
     public void Refresh()

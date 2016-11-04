@@ -49,6 +49,12 @@ public class InventoryPanel : EvermorePanel
 
     public override void Refresh()
     {
+        //Make all the slots empty visually
+        foreach(var slot in InvSlots)
+        {
+            slot.GetComponent<Image>().color = Color.white;
+        }
+
         //Give colors for the items
         for (int i = 0; i < GameManager.Instance.CharacterInventory.ItemList.Count; i++)
         {
@@ -63,10 +69,7 @@ public class InventoryPanel : EvermorePanel
                     color = Color.green;
                     break;
                 case Item.ItemType.Quest:
-                    color = Color.blue;
-                    break;
-                case Item.ItemType.Food:
-                    color = Color.black;
+                    color = Color.yellow;
                     break;
             }
             InvSlots[i].GetComponent<Image>().color = color;

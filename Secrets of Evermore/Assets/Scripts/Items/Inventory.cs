@@ -5,8 +5,13 @@ using System.Collections.Generic;
 public class Inventory
 {
 
+    //PRIVATE  VARIABLES
     private bool IsInvFull = false;
+
+    //PUBLIC VARIABLES
     public List<Item> ItemList = new List<Item>();
+
+    //PUBLIC METHODS
 
     public void Initialize()
     {
@@ -52,7 +57,7 @@ public class Inventory
                             var armorFound = item as Armor;
                             var armorInInv = ItemList[i] as Armor;
 
-                            if (armorInInv.DefenceValue < armorFound.DefenceValue)
+                            if ((armorInInv.DefenceValue < armorFound.DefenceValue) && (armorFound.TypeArmor == armorInInv.TypeArmor))
                             {
                                 ItemList[i] = item;
                                 return true;
@@ -85,4 +90,33 @@ public class Inventory
         ItemList.Remove(item);
         IsInvFull = false;
     }
+
+    public void RemoveItem(string itemName)
+    {
+        //Remove an item from the list
+        foreach (var item in ItemList)
+        {
+            if (item.Name == itemName)
+            {
+                ItemList.Remove(item);
+                break;
+            }
+        }
+        IsInvFull = false;
+    }
+
+    //Check if you haave an item in your inventory
+    public bool CheckForItem(string name)
+    {
+        foreach (var item in ItemList)
+        {
+            if (item.Name == name)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

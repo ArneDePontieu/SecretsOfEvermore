@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MovingObject : MonoBehaviour
 {
@@ -8,12 +9,27 @@ public class MovingObject : MonoBehaviour
     public float MoveSpeed;
 
     public bool IsMoving;
+    public bool IsOpening = false;
+    public List<int> ActivatedTriggersID = new List<int>();
 
     public Vector3 OpenPosition;
     public Vector3 ClosedPosition;
 
     //PRIVATE VARIABLES
     private Vector3 _distanceVector;
+
+    //PRIVATE METHODS
+    void Update()
+    {
+        if (IsOpening)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
+    }
 
     //PUBLIC METHODS
     public void Close()
@@ -47,5 +63,59 @@ public class MovingObject : MonoBehaviour
             }
         }
     }
+
+    public void AddActivatedTrigger(int ID)
+    {
+        //Set moving and opening to true
+        IsMoving = true;
+        IsOpening = true;
+
+        //bool to check if the trigger already exists in the list
+        bool add = true;
+
+        foreach(var t in ActivatedTriggersID)
+        {
+            //USE Id's to check if they're different
+            if(t== ID)
+            {
+                add = false;
+            }
+        }
+
+        //Add the object if it doesn't exist in the list already
+        if(add)
+        {
+            ActivatedTriggersID.Add(ID);
+        }
+    }
+
+    public void RemoveActivatedTrigger(int ID)
+    {
+
+        //bool to check if the trigger already exists in the list
+        bool remove = false;
+
+        foreach (var t in ActivatedTriggersID)
+        {
+            //USE Id's to check if they're different
+            if (t == ID)
+            {
+                remove = true;
+            }
+        }
+
+        //Remove the object if it exists in the list
+        if (remove)
+        {
+            ActivatedTriggersID.Remove(ID);
+        }
+
+        if (ActivatedTriggersID.Count<=0)
+        {
+            IsMoving = true;
+            IsOpening = false;
+        }
+    }
+
 
 }

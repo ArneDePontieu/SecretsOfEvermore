@@ -7,6 +7,7 @@ public class CharacterManager
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
+
     //the ID of the selected character
     private int _selectedCharacterID = 0;
     //Camera variable
@@ -20,6 +21,9 @@ public class CharacterManager
     public List<Avatar> CharacterList = new List<Avatar>();
     //List of enemies
     public List<Enemy> EnemyList = new List<Enemy>();
+    //Can't swap if dog is dead
+    public bool CanSwap = true;
+    public bool ForceSwap = false;
 
     //----------------------
     //PRIVATE METHODS
@@ -63,10 +67,19 @@ public class CharacterManager
 
     public void Refresh()
     {
+        //Force swap when the dog dies
+        if(ForceSwap)
+        {
+            SelectCharacter(_selectedCharacterID + 1);
+            ForceSwap = false;
+        }
         //Swap character when pressing spacebar
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SelectCharacter(_selectedCharacterID + 1);
+            if (CanSwap)
+            {
+                SelectCharacter(_selectedCharacterID + 1);
+            }
         }
 
 
@@ -74,6 +87,11 @@ public class CharacterManager
         for (int i = 0; i < CharacterList.Count; i++)
         {
             CharacterList[i].VCharacter.SelectedChar = CharacterList[_selectedCharacterID].VCharacter;
+        }
+
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            GetSelectedCharacter().TakeDamage(10.0f);
         }
 
     }
@@ -112,7 +130,7 @@ public class CharacterManager
 
         //Add them to the list
         CharacterList.Add(human);
-        CharacterList.Add(dog);       
+        CharacterList.Add(dog);
 
         //Update the character stats on launch
         UpdateCharacterStats();

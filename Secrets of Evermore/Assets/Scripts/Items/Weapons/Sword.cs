@@ -19,7 +19,7 @@ public class Sword : Weapon
         foreach (var enemy in GameManager.Instance.CharManagerInstance.EnemyList.ToArray())
         {
             var angle = Vector3.Angle(GameManager.Instance.CharManagerInstance.GetSelectedCharacter().VCharacter.ForwardVector, -GameManager.Instance.CharManagerInstance.VectorFromSelectedChar(enemy.VEnemy));
-            if (angle <= 45.0f && GameManager.Instance.CharManagerInstance.VectorFromSelectedChar(enemy.VEnemy).magnitude <= 2.0f)
+            if (angle <= 45.0f && GameManager.Instance.CharManagerInstance.VectorFromSelectedChar(enemy.VEnemy).magnitude <= 3.0f)
 
             {
                 enemy.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage() * 0.75f);

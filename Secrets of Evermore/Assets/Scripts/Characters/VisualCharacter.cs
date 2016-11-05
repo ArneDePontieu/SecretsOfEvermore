@@ -62,10 +62,10 @@ public class VisualCharacter : MonoBehaviour
             //Move with the arrow keys
             var move = new Vector3();
             move.x = Input.GetAxis("Horizontal");
-            move.y = Input.GetAxis("Vertical");            
+            move.y = Input.GetAxis("Vertical");
             transform.position += move * Info.MovementSpeed * Time.deltaTime;
 
-            if (move != new Vector3(0,0,0))
+            if (move != new Vector3(0, 0, 0))
             {
                 ForwardVector = move.normalized;
             }
@@ -127,7 +127,22 @@ public class VisualCharacter : MonoBehaviour
             }
             else
             {
+                //Do a raycast to check if an enemy is in front of you
+                RaycastHit2D hit = Physics2D.Raycast(
+                    transform.position,
+                   ForwardVector,
+                    5.0f,
+                    LayerMask.GetMask("EnemyLayer"));
 
+                if (hit.collider != null)
+
+                {
+                    //Hit the enemy with standard damage
+                    if (hit.collider.gameObject.tag == "Enemy" && hit.distance <= 1.0f)
+                    {
+                        hit.collider.gameObject.GetComponent<VisualEnemy>().Info.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage());
+                    }
+                }
             }
 
             //Reset the counter
@@ -162,7 +177,22 @@ public class VisualCharacter : MonoBehaviour
             }
             else
             {
+                //Do a raycast to check if an enemy is in front of you
+                RaycastHit2D hit = Physics2D.Raycast(
+                    transform.position,
+                    ForwardVector,
+                    5.0f,
+                    LayerMask.GetMask("EnemyLayer"));
 
+                if (hit.collider != null)
+
+                {
+                    //Hit the enemy with standard damage
+                    if (hit.collider.gameObject.tag == "Enemy" && hit.distance <= 1.0f)
+                    {
+                        hit.collider.gameObject.GetComponent<VisualEnemy>().Info.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage());
+                    }
+                }
             }
 
             //Reset the counter

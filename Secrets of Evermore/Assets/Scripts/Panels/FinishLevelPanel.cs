@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FinishLevelPanel : EvermorePanel {
 
+    //PRIVATE VARIABLES
+    [SerializeField]
+    private GameObject panelTextObject;
 
+    //PUBLIC VARIABLES
 
     //PUBLIC METHODS
 
     public override void Initialize()
-
     {
 
 
@@ -18,6 +22,12 @@ public class FinishLevelPanel : EvermorePanel {
     {
 
     }
+
+    public void SetText(string txt)
+    {
+        panelTextObject.GetComponent<Text>().text = txt;
+    }
+
 
     public void RestartLevel()
     {

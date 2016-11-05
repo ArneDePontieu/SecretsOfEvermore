@@ -7,6 +7,7 @@ public class Inventory
 
     //PRIVATE  VARIABLES
     private bool IsInvFull = false;
+    private int _invSize = 25;
 
     //PUBLIC VARIABLES
     public List<Item> ItemList = new List<Item>();
@@ -59,6 +60,7 @@ public class Inventory
                             if (weaponInInv.AttackPower < weaponFound.AttackPower)
                             {
                                 ItemList[i] = item;
+                                GameManager.Instance.CharManagerInstance.UpdateCharacterStats();
                                 return true;
                             }
                         }
@@ -73,27 +75,27 @@ public class Inventory
                             if ((armorInInv.DefenceValue < armorFound.DefenceValue) && (armorFound.TypeArmor == armorInInv.TypeArmor))
                             {
                                 ItemList[i] = item;
+                                GameManager.Instance.CharManagerInstance.UpdateCharacterStats();
                                 return true;
                             }
                         }
                         break;
                 }
             }
-
-            GameManager.Instance.CharManagerInstance.UpdateCharacterStats();
         }
 
         //Check if the inventory is full
         if (!IsInvFull)
         {
             ItemList.Add(item);
+            //Set the inventory full
+            if (ItemList.Count >= _invSize)
+            {
+                IsInvFull = true;
+            }
+            //Update the character stats
+            GameManager.Instance.CharManagerInstance.UpdateCharacterStats();
             return true;
-        }
-
-        //Set the inventory full
-        if (ItemList.Count >= GameManager.Instance.UIManagerInstance.InvPanel.InventorySize)
-        {
-            IsInvFull = true;
         }
 
         return false;

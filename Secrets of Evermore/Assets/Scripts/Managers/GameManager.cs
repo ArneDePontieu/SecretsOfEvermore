@@ -17,12 +17,15 @@ public class GameManager : MonoBehaviour
 
     public Inventory CharacterInventory;
 
-    public GameObject VisualItem;
-    public GameObject VisualEnemy;
 
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
+
+    [SerializeField]
+    private GameObject VisualItem;
+    [SerializeField]
+    private GameObject VisualEnemy;
 
     //----------------------
     //PUBLIC METHODS
@@ -62,6 +65,19 @@ public class GameManager : MonoBehaviour
         enemyInfo.enemy.VEnemy = enemy.GetComponent<VisualEnemy>();
         //Set the world position of the enemy
         enemy.transform.position = new Vector3(enemyInfo.xPos, enemyInfo.yPos, 0.0f);
+    }
+
+    //Calculate damage numbers
+    public float CalculateDamage(float defence, float damage)
+    {
+        if (damage <= defence)
+        {
+            return damage / 2.0f;
+        }
+        else
+        {
+            return damage / 2.0f + (damage / 2.0f) * (defence/damage);
+        }
     }
 
     //----------------------
@@ -111,4 +127,6 @@ public class GameManager : MonoBehaviour
             CharManagerInstance.EnemyList.Add(it.enemy);
         }
     }
+
+
 }

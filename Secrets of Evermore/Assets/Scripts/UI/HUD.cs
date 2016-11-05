@@ -65,13 +65,13 @@ public class HUD : MonoBehaviour
         {
             if (avatar.Name == "Boy")
             {
-                HealthBarBoy.fillAmount = avatar.MaxHealth / avatar.Health;
+                HealthBarBoy.fillAmount = avatar.Health / avatar.MaxHealth;
                 HealthMaxBoy.text = avatar.MaxHealth.ToString();
                 HealthCurrBoy.text = avatar.Health.ToString();
             }
             if (avatar.Name == "Dog")
             {
-                HealthBarDog.fillAmount = avatar.MaxHealth / avatar.Health;
+                HealthBarDog.fillAmount = avatar.Health / avatar.MaxHealth;
                 HealthMaxDog.text = avatar.MaxHealth.ToString();
                 HealthCurrDog.text = avatar.Health.ToString();
             }

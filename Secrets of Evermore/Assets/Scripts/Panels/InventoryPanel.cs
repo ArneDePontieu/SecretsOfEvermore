@@ -19,7 +19,6 @@ public class InventoryPanel : EvermorePanel
 
     public GameObject InventorySlot;
     public List<GameObject> InvSlots = new List<GameObject>();
-    public int InventorySize = 25;
 
     //----------------------
     //PUBLIC METHODS

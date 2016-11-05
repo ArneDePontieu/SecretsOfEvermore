@@ -27,6 +27,7 @@ public class UIManager
         //Initialize
         InvPanel.Initialize();
         CharPanel.Initialize();
+        FinLevelPanel.Initialize();
 
         //Hide the panels
         InvPanel.gameObject.SetActive(false);

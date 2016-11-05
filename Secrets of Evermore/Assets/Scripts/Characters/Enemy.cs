@@ -7,8 +7,9 @@ public class Enemy : Character
 
     public VisualEnemy VEnemy;
     public Item ItemDrop;
+    public float AggroRange;
 
-    public Enemy(string name, float maxHealth, float attackLevel, float defenceLevel, float moveSpeed)
+    public Enemy(string name, float maxHealth, float attackLevel, float defenceLevel, float moveSpeed, float aggroRange)
     {
         Name = name;
         MaxHealth = maxHealth;
@@ -16,12 +17,15 @@ public class Enemy : Character
         AttackLevel = attackLevel;
         DefenceLevel = defenceLevel;
         MovementSpeed = moveSpeed;
+        AggroRange = aggroRange;
     }
 
     //PUBLIC METHODS
     public void TakeDamage(float damage)
     {
-        Health -= damage-DefenceLevel;
+        GameManager.Instance.CalculateDamage(DefenceLevel, damage);
+
+        Health -= GameManager.Instance.CalculateDamage(DefenceLevel, damage);
         if (Health <= 0.0f)
         {
             DropItem();

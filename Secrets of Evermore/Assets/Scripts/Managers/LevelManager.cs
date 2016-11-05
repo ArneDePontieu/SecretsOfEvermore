@@ -51,8 +51,9 @@ public class LevelManager
 
     }
 
-    public void FinishLevel()
+    public void FinishLevel(string txt)
     {
+        GameManager.Instance.UIManagerInstance.FinLevelPanel.SetText(txt);
         GameManager.Instance.UIManagerInstance.FinLevelPanel.gameObject.SetActive(true);
         Time.timeScale = 0.0f;
     }
@@ -99,15 +100,18 @@ public class LevelManager
         {
             case 1:
                 //Enemies
-                Enemy enemy = new Enemy("Goblin", 20.0f, 5.0f, 5.0f, 1.0f);
+                Enemy enemy = new Enemy("Goblin", 20.0f, 5.0f, 5.0f, 1.0f, 7.0f);
+                enemy.AttackDelay = 0.5f;
                 enemy.ItemDrop = new Sword(Weapon.DamageType.Physical, 50.0f, "Sword of the gods");
                 EnemySpawnList.Add(new EnemySpawnInfo(enemy, 8.0f, 7.0f));
 
-                enemy = new Enemy("Giblin", 20.0f, 5.0f, 5.0f, 1.0f);
-                enemy.ItemDrop = new Armor(5.0f, "Wicked helm",Armor.ArmorType.Head);
+                enemy = new Enemy("Giblin", 20.0f, 5.0f, 5.0f, 1.0f, 7.0f);
+                enemy.AttackDelay = 0.5f;
+                enemy.ItemDrop = new Armor(5.0f, "Wicked helm", Armor.ArmorType.Head);
                 EnemySpawnList.Add(new EnemySpawnInfo(enemy, 8.0f, 5.0f));
 
-                enemy = new Enemy("Dungeon Boss", 200.0f, 20.0f, 5.0f, 1.0f);
+                enemy = new Enemy("Dungeon Boss", 200.0f, 50.0f, 10.0f, 1.0f, 7.0f);
+                enemy.AttackDelay = 1.0f;
                 enemy.ItemDrop = new Quest("Minitaur head");
                 EnemySpawnList.Add(new EnemySpawnInfo(enemy, 46.0f, -13.3f));
 

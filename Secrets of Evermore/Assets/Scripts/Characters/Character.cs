@@ -11,10 +11,12 @@ public abstract class Character
     public string Name { get; set; }
     public float Health { get; set; }
     public int Level { get; set; }
-    public int AttackLevel { get; set; }
-    public int DefenseLevel { get; set; }
+    public float AttackLevel { get; set; }
+    public float DefenceLevel { get; set; }
     public float MovementSpeed { get; set; }
     public float MaxHealth { get; set; }
+    public float AttackDelay { get; set; }
+    public float AttackCounter { get; set; }
     
     //----------------------
     //PUBLIC METHODS

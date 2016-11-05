@@ -15,7 +15,7 @@ public class Inventory
 
     public void Initialize()
     {
-        AddItem(new Axe(Weapon.WeaponType.TwoHander, Weapon.DamageType.Physical, 10, "Standard Axe"));
+        AddItem(new Axe(Weapon.DamageType.Physical, 10, "Standard Axe"));
         AddItem(new Armor(1, "Leather Helm", Armor.ArmorType.Head));
         AddItem(new Armor(1, "Leather Shoulderpads", Armor.ArmorType.Shoulder));
         AddItem(new Armor(1, "Leather Chest", Armor.ArmorType.Chest));
@@ -24,6 +24,19 @@ public class Inventory
         AddItem(new Armor(1, "Leather Pants", Armor.ArmorType.Pants));
         AddItem(new Armor(1, "Leather Boots", Armor.ArmorType.Boots));
         AddItem(new Armor(1, "Leather Belt", Armor.ArmorType.Belt));
+    }
+
+    public Weapon GetWeapon()
+    {
+        foreach (var item in ItemList)
+        {
+            if (item.TypeItem == Item.ItemType.Weapon)
+            {
+                return item as Weapon;
+            }
+        }
+
+        return new Sword(Weapon.DamageType.Physical, 1.0f, "Wooden Sword") as Weapon;
     }
 
     public bool AddItem(Item item)

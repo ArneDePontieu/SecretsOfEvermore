@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject VisualItem;
     public GameObject VisualEnemy;
- 
+
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     }
 
     //Spawn an item
-    public void SpawnItem(LevelManager.SpawnInfo info)
+    public void SpawnItem(LevelManager.ItemSpawnInfo info)
     {
         //Create the item
         GameObject item = (GameObject)Instantiate(VisualItem);
@@ -50,6 +50,18 @@ public class GameManager : MonoBehaviour
         item.GetComponent<VisualItem>().Info = info.item;
         //Set the world position of the item
         item.transform.position = new Vector3(info.xPos, info.yPos, 0);
+    }
+
+    //Spawn an enemy
+    public void SpawnEnemy(LevelManager.EnemySpawnInfo enemyInfo)
+    {
+        //Create the enemy
+        GameObject enemy = (GameObject)Instantiate(VisualEnemy);
+        //Add the enemy info to it
+        enemy.GetComponent<VisualEnemy>().Info = enemyInfo.enemy;
+        enemyInfo.enemy.VEnemy = enemy.GetComponent<VisualEnemy>();
+        //Set the world position of the enemy
+        enemy.transform.position = new Vector3(enemyInfo.xPos, enemyInfo.yPos, 0.0f);
     }
 
     //----------------------
@@ -87,9 +99,16 @@ public class GameManager : MonoBehaviour
         CharManagerInstance.Initialize();
 
         //Spawn items
-        foreach(var it in LevelManagerInstance.GetSpawnList(level))
+        foreach (var it in LevelManagerInstance.GetItemSpawnList(level))
         {
             SpawnItem(it);
+        }
+
+        //Spawn Enemies
+        foreach (var it in LevelManagerInstance.GetEnemySpawnList(level))
+        {
+            SpawnEnemy(it);
+            CharManagerInstance.EnemyList.Add(it.enemy);
         }
     }
 }

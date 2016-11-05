@@ -30,7 +30,18 @@ public class VisualCharacter : MonoBehaviour
     {
         if (Info != null)
         {
+            //Update the counter for attacking
+            Info.AttackCounter += Time.deltaTime;
+            //Move the character
             Move();
+            //Attack if selected
+            if(Info.IsSelected)
+            {
+                if(Input.GetKeyDown(KeyCode.A))
+                {
+                    BasicAttack();
+                }
+            }
         }
     }
 
@@ -69,11 +80,48 @@ public class VisualCharacter : MonoBehaviour
 
             if(_isFollowing)
             {
-                transform.position = transform.position + (distanceVector.normalized * Time.deltaTime * Info.MovementSpeed);
+                transform.position = transform.position + (distanceVector.normalized * Time.deltaTime * (Info.MovementSpeed+1.0f));
             }
         }
 
     }
+
+    public void BasicAttack()
+    {
+        //Only attack if the counter is higher
+        if (Info.AttackCounter >= Info.AttackDelay)
+        {
+            if (Info.Name == "Boy")
+            {
+                var weapon = GameManager.Instance.CharacterInventory.GetWeapon();
+
+                switch (weapon.TypeOfWeapon)
+                {
+                    case Weapon.WeaponType.Axe:
+                        var axe = weapon as Axe;
+                        axe.BasicAttack();
+                        break;
+                    case Weapon.WeaponType.Spear:
+                        var spear = weapon as Spear;
+                        spear.BasicAttack();
+                        break;
+                    case Weapon.WeaponType.Sword:
+                        var sword = weapon as Sword;
+                        sword.BasicAttack();
+                        break;
+                }
+
+            }
+            else
+            {
+
+            }
+
+            //Reset the counter
+            Info.AttackCounter = 0.0f;
+        }
+    }
+
 
     //PRIVATE METHODS
     private Vector3 GetDistanceVector(Vector3 target)

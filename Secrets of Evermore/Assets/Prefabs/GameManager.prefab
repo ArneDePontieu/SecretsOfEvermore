@@ -52,4 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VisualItem: {fileID: 1000011368235452, guid: db73888c5558c2c488383035cfb3b075, type: 2}
-  VisualEnemy: {fileID: 0}
+  VisualEnemy: {fileID: 1000014172447350, guid: 0a924be053a70894182f5e8ddc36c119,
+    type: 2}

@@ -16,15 +16,18 @@ public abstract class Weapon : Item
 
     public enum WeaponType
     {
-        OneHander,
-        TwoHander
+        Axe,
+        Spear,
+        Sword            
     }
 
-    public Weapon(WeaponType wType, DamageType dType, float attackPower,string name):base(name)
+    public Weapon(DamageType dType, float attackPower,string name):base(name)
     {
-        TypeOfWeapon = wType;
         TypeOfDamage = dType;
         AttackPower = attackPower;
         TypeItem = ItemType.Weapon;
     }
+
+    public abstract void BasicAttack();
+    public abstract void SpecialAttack();
 }

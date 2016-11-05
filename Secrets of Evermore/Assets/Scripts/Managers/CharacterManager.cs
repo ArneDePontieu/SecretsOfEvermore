@@ -7,8 +7,6 @@ public class CharacterManager
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
-    //List of enemies
-    private List<Enemy> _enemyList = new List<Enemy>();
     //the ID of the selected character
     private int _selectedCharacterID = 0;
     //Camera variable
@@ -20,6 +18,8 @@ public class CharacterManager
 
     //List of controllable characters
     public List<Avatar> CharacterList = new List<Avatar>();
+    //List of enemies
+    public List<Enemy> EnemyList = new List<Enemy>();
 
     //----------------------
     //PRIVATE METHODS
@@ -91,10 +91,11 @@ public class CharacterManager
         human.MovementSpeed = 5.0f;
         human.Level = 1;
         human.AttackLevel = 1;
-        human.DefenseLevel = 1;
+        human.DefenceLevel = 1;
         human.IsSelected = true;
         human.MaxHealth = 100.0f;
         human.Health = human.MaxHealth;
+        human.AttackDelay = 0.5f;
 
 
         //Create the dog
@@ -103,10 +104,11 @@ public class CharacterManager
         dog.MovementSpeed = 5.0f;
         dog.Level = 1;
         dog.AttackLevel = 1;
-        dog.DefenseLevel = 1;
+        dog.DefenceLevel = 1;
         dog.IsSelected = false;
         dog.MaxHealth = 100.0f;
         dog.Health = dog.MaxHealth;
+        dog.AttackDelay = 0.5f;
 
         //Add them to the list
         CharacterList.Add(human);
@@ -201,5 +203,28 @@ public class CharacterManager
             character.BonusArmorDefence = bonusArmor;
             character.BonusWeaponDamage = bonusDamage;
         }
+    }
+
+    public float DistanceToSelectedChar(VisualEnemy enemy)
+    {
+        return (CharacterList[_selectedCharacterID].VCharacter.transform.position - enemy.transform.position).magnitude;
+    }
+
+    public float GetSelectedCharacterDamage()
+    {
+        return CharacterList[_selectedCharacterID].AttackLevel + CharacterList[_selectedCharacterID].BonusWeaponDamage;
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        //Remove the enemy for the list
+        foreach (var e in EnemyList)
+        {
+            if (e == enemy)
+            {
+                EnemyList.Remove(e);
+            }
+        }
+
     }
 }

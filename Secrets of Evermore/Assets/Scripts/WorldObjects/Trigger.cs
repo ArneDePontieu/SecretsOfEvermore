@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class Trigger : MonoBehaviour
 {
@@ -19,21 +20,38 @@ public class Trigger : MonoBehaviour
         foreach (var link in TriggerLinks)
         {
             //Only activate if you have the required item, unless you don't need an item
-            if ((ItemRequired && GameManager.Instance.CharacterInventory.CheckForItem(ItemName)) || !ItemRequired)
+            if (ItemRequired)
+            {
+                //Notification that you need an item to open this door
+                GameManager.Instance.UIManagerInstance.NotificationText.gameObject.SetActive(true);
+
+                StringWriter writer = new StringWriter();
+                writer.Write("You need \'");
+                writer.Write(ItemName);
+                writer.Write("\' to activate this trigger.");
+
+                GameManager.Instance.UIManagerInstance.NotificationText.text = writer.ToString();
+            }
+
+            //Activate the trigger
+            if ((GameManager.Instance.CharacterInventory.CheckForItem(ItemName) && ItemRequired) || !ItemRequired)
             {
                 link.GetComponent<MovingObject>().AddActivatedTrigger(other.gameObject.GetInstanceID());
 
                 //remove the item from your inventory
-                if(ItemRequired)
+                if (ItemRequired)
                 {
                     GameManager.Instance.CharacterInventory.RemoveItem(ItemName);
+                    GameManager.Instance.UIManagerInstance.NotificationText.gameObject.SetActive(false);
                 }
             }
+
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
+        GameManager.Instance.UIManagerInstance.NotificationText.gameObject.SetActive(false);
         if (!TriggerOnce && !ItemRequired)
         {
             foreach (var link in TriggerLinks)

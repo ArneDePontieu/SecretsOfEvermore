@@ -99,14 +99,22 @@ public class LevelManager
         {
             case 1:
                 //Enemies
-                EnemySpawnList.Add(new EnemySpawnInfo(new Enemy("Goblin", 20.0f, 5.0f, 5.0f, 1.0f), 8.0f, 7.0f));
+                Enemy enemy = new Enemy("Goblin", 20.0f, 5.0f, 5.0f, 1.0f);
+                enemy.ItemDrop = new Sword(Weapon.DamageType.Physical, 50.0f, "Sword of the gods");
+                EnemySpawnList.Add(new EnemySpawnInfo(enemy, 8.0f, 7.0f));
+
+                enemy = new Enemy("Giblin", 20.0f, 5.0f, 5.0f, 1.0f);
+                enemy.ItemDrop = new Armor(5.0f, "Wicked helm",Armor.ArmorType.Head);
+                EnemySpawnList.Add(new EnemySpawnInfo(enemy, 8.0f, 5.0f));
+
+                enemy = new Enemy("Dungeon Boss", 200.0f, 20.0f, 5.0f, 1.0f);
+                enemy.ItemDrop = new Quest("Minitaur head");
+                EnemySpawnList.Add(new EnemySpawnInfo(enemy, 46.0f, -13.3f));
+
                 break;
         }
 
         //Return the list
         return EnemySpawnList;
     }
-
-
-
 }

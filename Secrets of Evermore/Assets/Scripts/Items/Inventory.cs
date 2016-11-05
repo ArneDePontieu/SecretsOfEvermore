@@ -15,7 +15,7 @@ public class Inventory
 
     public void Initialize()
     {
-        AddItem(new Axe(Weapon.DamageType.Physical, 10, "Standard Axe"));
+        AddItem(new Sword(Weapon.DamageType.Physical, 10, "Standard Axe"));
         AddItem(new Armor(1, "Leather Helm", Armor.ArmorType.Head));
         AddItem(new Armor(1, "Leather Shoulderpads", Armor.ArmorType.Shoulder));
         AddItem(new Armor(1, "Leather Chest", Armor.ArmorType.Chest));
@@ -79,6 +79,8 @@ public class Inventory
                         break;
                 }
             }
+
+            GameManager.Instance.CharManagerInstance.UpdateCharacterStats();
         }
 
         //Check if the inventory is full

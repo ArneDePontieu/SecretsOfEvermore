@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Axe : Weapon {
+public class Axe : Weapon
+{
 
-    public Axe(DamageType dType, float attackPower, string name) :base(dType,attackPower,name)
+    public Axe(DamageType dType, float attackPower, string name) : base(dType, attackPower, name)
     {
         TypeOfWeapon = WeaponType.Axe;
     }
@@ -16,20 +17,14 @@ public class Axe : Weapon {
     //Whirlwind
     public override void SpecialAttack()
     {
-        foreach (var enemy in GameManager.Instance.CharManagerInstance.EnemyList)
+        //ToArray because we remove an enemy if he dies
+        foreach (var enemy in GameManager.Instance.CharManagerInstance.EnemyList.ToArray())
         {
-            if (GameManager.Instance.CharManagerInstance.DistanceToSelectedChar(enemy.VEnemy)<=1.0f)
+            if (GameManager.Instance.CharManagerInstance.VectorFromSelectedChar(enemy.VEnemy).magnitude <= 1.5f)
 
             {
-                enemy.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage()*0.75f);
+                enemy.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage() * 0.75f);
             }
         }
     }
-
-    //Basic Attack
-    public override void BasicAttack()
-    {
-        SpecialAttack();
-    }
-
 }

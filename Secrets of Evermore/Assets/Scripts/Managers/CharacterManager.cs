@@ -90,7 +90,7 @@ public class CharacterManager
         human.Name = "Boy";
         human.MovementSpeed = 5.0f;
         human.Level = 1;
-        human.AttackLevel = 1;
+        human.AttackLevel = 1.0f;
         human.DefenceLevel = 1;
         human.IsSelected = true;
         human.MaxHealth = 100.0f;
@@ -205,20 +205,29 @@ public class CharacterManager
         }
     }
 
-    public float DistanceToSelectedChar(VisualEnemy enemy)
+
+    //Get the distance from the selected character to the enemy
+    public Vector3 VectorFromSelectedChar(VisualEnemy enemy)
     {
-        return (CharacterList[_selectedCharacterID].VCharacter.transform.position - enemy.transform.position).magnitude;
+        return (CharacterList[_selectedCharacterID].VCharacter.transform.position - enemy.transform.position);
     }
 
+    //Get the damage from the selected character
     public float GetSelectedCharacterDamage()
     {
         return CharacterList[_selectedCharacterID].AttackLevel + CharacterList[_selectedCharacterID].BonusWeaponDamage;
     }
 
+    public Avatar GetSelectedCharacter()
+    {
+        return CharacterList[_selectedCharacterID];
+    }
+
     public void RemoveEnemy(Enemy enemy)
     {
         //Remove the enemy for the list
-        foreach (var e in EnemyList)
+        //Do ToArray because we are removing an object in the list during the loop
+        foreach (var e in EnemyList.ToArray())
         {
             if (e == enemy)
             {

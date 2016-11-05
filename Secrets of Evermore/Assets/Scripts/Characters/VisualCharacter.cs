@@ -17,17 +17,17 @@ public class VisualCharacter : MonoBehaviour
 
     public Avatar Info;
     public VisualCharacter SelectedChar;
+    public Vector3 ForwardVector;
 
     //----------------------
     //PRIVATE METHODS
     //----------------------
 
-    //----------------------
-    //PUBLIC METHODS
-    //----------------------
-
-    public void Update()
+    void Update()
     {
+        //Debug forward vector
+        Debug.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position + ForwardVector, Color.red);
+
         if (Info != null)
         {
             //Update the counter for attacking
@@ -35,15 +35,24 @@ public class VisualCharacter : MonoBehaviour
             //Move the character
             Move();
             //Attack if selected
-            if(Info.IsSelected)
+            if (Info.IsSelected)
             {
-                if(Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
                     BasicAttack();
                 }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    SpecialAttack();
+                }
+
             }
         }
     }
+
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
 
     public void Move()
     {
@@ -53,8 +62,13 @@ public class VisualCharacter : MonoBehaviour
             //Move with the arrow keys
             var move = new Vector3();
             move.x = Input.GetAxis("Horizontal");
-            move.y = Input.GetAxis("Vertical");
+            move.y = Input.GetAxis("Vertical");            
             transform.position += move * Info.MovementSpeed * Time.deltaTime;
+
+            if (move != new Vector3(0,0,0))
+            {
+                ForwardVector = move.normalized;
+            }
         }
 
         if (SelectedChar != null)
@@ -72,15 +86,15 @@ public class VisualCharacter : MonoBehaviour
             }
             else
             {
-                if (distanceVector.magnitude > _followDistance+4.0f)
+                if (distanceVector.magnitude > _followDistance + 4.0f)
                 {
                     _isFollowing = true;
                 }
             }
 
-            if(_isFollowing)
+            if (_isFollowing)
             {
-                transform.position = transform.position + (distanceVector.normalized * Time.deltaTime * (Info.MovementSpeed+1.0f));
+                transform.position = transform.position + (distanceVector.normalized * Time.deltaTime * (Info.MovementSpeed + 1.0f));
             }
         }
 
@@ -110,7 +124,41 @@ public class VisualCharacter : MonoBehaviour
                         sword.BasicAttack();
                         break;
                 }
+            }
+            else
+            {
 
+            }
+
+            //Reset the counter
+            Info.AttackCounter = 0.0f;
+        }
+    }
+
+    public void SpecialAttack()
+    {
+        //Only attack if the counter is higher
+        if (Info.AttackCounter >= Info.AttackDelay)
+        {
+            if (Info.Name == "Boy")
+            {
+                var weapon = GameManager.Instance.CharacterInventory.GetWeapon();
+
+                switch (weapon.TypeOfWeapon)
+                {
+                    case Weapon.WeaponType.Axe:
+                        var axe = weapon as Axe;
+                        axe.SpecialAttack();
+                        break;
+                    case Weapon.WeaponType.Spear:
+                        var spear = weapon as Spear;
+                        spear.SpecialAttack();
+                        break;
+                    case Weapon.WeaponType.Sword:
+                        var sword = weapon as Sword;
+                        sword.SpecialAttack();
+                        break;
+                }
             }
             else
             {

@@ -10,16 +10,23 @@ public class Spear : Weapon
         TypeOfWeapon = WeaponType.Spear;
     }
 
-    //Jab
+    //Throw spear
     public override void SpecialAttack()
     {
-        throw new NotImplementedException();
+        //Do a raycast to check if an enemy is in front of you
+        RaycastHit2D hit = Physics2D.Raycast(
+            GameManager.Instance.CharManagerInstance.GetSelectedCharacter().VCharacter.transform.position,
+            GameManager.Instance.CharManagerInstance.GetSelectedCharacter().VCharacter.ForwardVector,
+            5.0f,
+            LayerMask.GetMask("EnemyLayer"));
+
+        if (hit.collider != null)
+        {
+            //Hit the enemy with standard damage
+            if (hit.collider.gameObject.tag == "Enemy" && hit.distance <= 3.0f)
+            {
+                hit.collider.gameObject.GetComponent<VisualEnemy>().Info.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage()*0.75f);
+            }
+        }
     }
-
-    //Basic Attack
-    public override void BasicAttack()
-    {
-
-    }
-
 }

@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class VisualEnemy : MonoBehaviour {
+public class VisualEnemy : MonoBehaviour
+{
 
     //----------------------
     //PRIVATE VARIABLES
     //----------------------
+
+    public GameObject HealthBar;
 
     //----------------------
     //PUBLIC VARIABLES
@@ -17,19 +21,18 @@ public class VisualEnemy : MonoBehaviour {
     //PRIVATE METHODS
     //----------------------
 
+    void Update()
+    {
+        HealthBar.GetComponent<Image>().fillAmount = Info.Health / Info.MaxHealth;
+    }
+
     //----------------------
     //PUBLIC METHODS
     //----------------------
-
-    public void Update()
-    {
-
-    }
 
     //Kill the enemy
     public void Suicide()
     {
         Destroy(this.gameObject);
     }
-
 }

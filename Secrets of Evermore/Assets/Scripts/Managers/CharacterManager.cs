@@ -29,6 +29,7 @@ public class CharacterManager
     //PRIVATE METHODS
     //----------------------
 
+    //Select a character by ID
     private void SelectCharacter(int charID)
     {
         //Check if the ID is different than the previous
@@ -60,15 +61,11 @@ public class CharacterManager
     //PUBLIC METHODS
     //----------------------
 
-    public CharacterManager()
-    {
-
-    }
-
+    //Update function
     public void Refresh()
     {
         //Force swap when the dog dies
-        if(ForceSwap)
+        if (ForceSwap)
         {
             SelectCharacter(_selectedCharacterID + 1);
             ForceSwap = false;
@@ -89,20 +86,23 @@ public class CharacterManager
             CharacterList[i].VCharacter.SelectedChar = CharacterList[_selectedCharacterID].VCharacter;
         }
 
-        if(Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             GetSelectedCharacter().TakeDamage(10.0f);
         }
-
     }
 
+    //Initialize function
     public void Initialize()
     {
+        InitializeCharacterStats();
         InitializeCharactersLevel();
     }
 
+    //Set the character stats
     public void InitializeCharacterStats()
     {
+        CharacterList.Clear();
         //Create the human
         Avatar human = new Avatar();
         human.Name = "Boy";
@@ -136,6 +136,7 @@ public class CharacterManager
         UpdateCharacterStats();
     }
 
+    //Attack the variable to an object
     public void InitializeCharactersLevel()
     {
         //Put the camera in a variable
@@ -171,9 +172,9 @@ public class CharacterManager
         {
             CharacterList[i].VCharacter.SelectedChar = CharacterList[_selectedCharacterID].VCharacter;
         }
-
     }
 
+    //Update the defence and attack of the character
     public void UpdateCharacterStats()
     {
         //Reset the bonusarmor and damage
@@ -223,7 +224,6 @@ public class CharacterManager
         }
     }
 
-
     //Get the distance from the selected character to the enemy
     public Vector3 VectorFromSelectedChar(VisualEnemy enemy)
     {
@@ -236,14 +236,15 @@ public class CharacterManager
         return CharacterList[_selectedCharacterID].AttackLevel + CharacterList[_selectedCharacterID].BonusWeaponDamage;
     }
 
+    //Get the currently selected character
     public Avatar GetSelectedCharacter()
     {
         return CharacterList[_selectedCharacterID];
     }
 
+    //Remove an enemy from the list
     public void RemoveEnemy(Enemy enemy)
     {
-        //Remove the enemy for the list
         //Do ToArray because we are removing an object in the list during the loop
         foreach (var e in EnemyList.ToArray())
         {
@@ -252,6 +253,5 @@ public class CharacterManager
                 EnemyList.Remove(e);
             }
         }
-
     }
 }

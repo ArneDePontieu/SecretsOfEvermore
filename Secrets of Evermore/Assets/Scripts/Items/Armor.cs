@@ -4,6 +4,10 @@ using System.Collections;
 public class Armor : Item
 {
 
+    //----------------------
+    //PUBLIC VARIABLES
+    //----------------------
+
     public float DefenceValue;
     public ArmorType TypeArmor;
 
@@ -20,14 +24,14 @@ public class Armor : Item
     }
 
     //--------------------
-    //METHODS
+    //PUBLIC METHODS
     //--------------------
 
-    public Armor(float defenceValue,string name, ArmorType type):base(name)
+    //Constructor
+    public Armor(float defenceValue, string name, ArmorType type) : base(name)
     {
         DefenceValue = defenceValue;
         TypeItem = ItemType.Armor;
         TypeArmor = type;
     }
-
 }

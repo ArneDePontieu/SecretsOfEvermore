@@ -5,7 +5,9 @@ using System.Collections;
 public class UIManager
 {
 
+    //----------------------
     //PUBLIC VARIABLES
+    //----------------------
     public InventoryPanel InvPanel;
     public CharacterPanel CharPanel;
     public FinishLevelPanel FinLevelPanel;
@@ -15,7 +17,10 @@ public class UIManager
 
     public Text NotificationText;
 
-    //TO INITIALIZE THE PANELS
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
+
     public void Initialize()
     {
         //Find and assign
@@ -63,5 +68,4 @@ public class UIManager
             CharPanel.Refresh();
         }
     }
-
 }

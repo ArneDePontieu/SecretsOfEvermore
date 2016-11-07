@@ -5,6 +5,11 @@ using System;
 public class Sword : Weapon
 {
 
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
+
+    //Constructor
     public Sword(DamageType dType, float attackPower, string name) : base(dType, attackPower, name)
     {
         TypeOfWeapon = WeaponType.Sword;
@@ -13,8 +18,6 @@ public class Sword : Weapon
     //Cleave attack
     public override void SpecialAttack()
     {
-        //Hit everything in cone
-
         //Calculate the angle between the forward vector and the vector to the enemy, damage the enemies in the cone
         foreach (var enemy in GameManager.Instance.CharManagerInstance.EnemyList.ToArray())
         {
@@ -26,5 +29,4 @@ public class Sword : Weapon
             }
         }
     }
-
 }

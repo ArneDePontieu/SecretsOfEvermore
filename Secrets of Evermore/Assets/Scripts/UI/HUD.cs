@@ -19,10 +19,6 @@ public class HUD : MonoBehaviour
     private Text HealthCurrDog;
 
     //----------------------
-    //PUBLIC VARIABLES
-    //----------------------
-
-    //----------------------
     //PRIVATE METHODS
     //----------------------
 
@@ -79,10 +75,4 @@ public class HUD : MonoBehaviour
         ////Health bar boy
         //HealthBarBoy.GetComponent<Image>().fillAmount = 
     }
-
-    //----------------------
-    //PUBLIC METHODS
-    //----------------------
-
-
 }

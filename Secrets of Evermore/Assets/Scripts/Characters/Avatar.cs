@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Avatar : Character
 {
+    //----------------------
+    //PUBLIC VARIABLES
+    //----------------------
 
     public bool IsSelected { get; set; }
     public VisualCharacter VCharacter { get; set; }
@@ -10,6 +13,11 @@ public class Avatar : Character
     public float BonusWeaponDamage { get; set; }
     public float BonusArmorDefence { get; set; }
 
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
+
+    //Constructor
     public Avatar()
     {
         BonusArmorDefence = 0.0f;
@@ -19,6 +27,7 @@ public class Avatar : Character
     //Take damage
     public void TakeDamage(float damage)
     {
+        //Calculate the damage taken
         Health -= GameManager.Instance.CalculateDamage(DefenceLevel, damage);
         //If Boy dies game over, else not game over but you can't swap anymore to the dog
         if (Name == "Boy")
@@ -40,11 +49,8 @@ public class Avatar : Character
                 {
                     GameManager.Instance.CharManagerInstance.ForceSwap = true;
                 }
-
             }
         }
-
-
     }
 
 }

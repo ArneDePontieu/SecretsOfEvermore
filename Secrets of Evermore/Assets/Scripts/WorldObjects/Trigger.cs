@@ -6,14 +6,19 @@ using System.IO;
 public class Trigger : MonoBehaviour
 {
 
+    //----------------------
     //PUBLIC VARIABLES
-    public bool TriggerOnce;
-    public List<GameObject> TriggerLinks;
+    //----------------------
 
+    public bool TriggerOnce;
     public bool ItemRequired = false;
+
+    public List<GameObject> TriggerLinks;
     public string ItemName;
 
+    //----------------------
     //PRIVATE METHODS
+    //----------------------
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -45,7 +50,6 @@ public class Trigger : MonoBehaviour
                     GameManager.Instance.UIManagerInstance.NotificationText.gameObject.SetActive(false);
                 }
             }
-
         }
     }
 

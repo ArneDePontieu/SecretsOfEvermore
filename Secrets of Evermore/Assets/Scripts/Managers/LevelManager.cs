@@ -6,12 +6,18 @@ using System.Collections.Generic;
 public class LevelManager
 {
 
-    //private variables
+    //----------------------
+    //PRIVATE VARIABLES
+    //----------------------
 
-    //public variables
-    public List<ItemSpawnInfo> ItemSpawnList = new List<ItemSpawnInfo>();
-    public List<EnemySpawnInfo> EnemySpawnList = new List<EnemySpawnInfo>();
+    private List<ItemSpawnInfo> ItemSpawnList = new List<ItemSpawnInfo>();
+    private List<EnemySpawnInfo> EnemySpawnList = new List<EnemySpawnInfo>();
 
+    //----------------------
+    //PUBLIC VARIABLES
+    //----------------------
+
+    //Information about an item spawn
     public struct ItemSpawnInfo
     {
         public Item item;
@@ -26,6 +32,7 @@ public class LevelManager
         }
     }
 
+    //Information about an enemy spawn
     public struct EnemySpawnInfo
     {
         public Enemy enemy;
@@ -40,17 +47,11 @@ public class LevelManager
         }
     }
 
-    //Public Methods
-    public void Initialize()
-    {
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
 
-    }
-
-    public void Refresh()
-    {
-
-    }
-
+    //When you finish a level
     public void FinishLevel(string txt)
     {
         GameManager.Instance.UIManagerInstance.FinLevelPanel.SetText(txt);
@@ -58,6 +59,7 @@ public class LevelManager
         Time.timeScale = 0.0f;
     }
 
+    //Load a level
     public void LoadLevel(int level)
     {
         if (level <= SceneManager.sceneCount)
@@ -67,7 +69,14 @@ public class LevelManager
         }
     }
 
-    public List<ItemSpawnInfo> GetItemSpawnList(int level)
+    //Get the list of items to spawn
+    public List<ItemSpawnInfo> GetItemSpawnList()
+    {
+        return ItemSpawnList;
+    }
+
+    //Initialize the list of items to spawn
+    public List<ItemSpawnInfo> InitializeItemSpawnList(int level)
     {
         //Clear the spawnlist before adding things
         ItemSpawnList.Clear();
@@ -82,7 +91,11 @@ public class LevelManager
                 ItemSpawnList.Add(new ItemSpawnInfo(new Quest("Diamond Statue"), 46.0f, 8.0f));
                 ItemSpawnList.Add(new ItemSpawnInfo(new Quest("Golden Statue"), 39.7f, -12.4f));
                 ItemSpawnList.Add(new ItemSpawnInfo(new Armor(5.0f, "Magical Pants", Armor.ArmorType.Pants), -9.5f, 4.2f));
-
+                ItemSpawnList.Add(new ItemSpawnInfo(new Alchemy("Salt"), -0.5f, 12.84f));
+                ItemSpawnList.Add(new ItemSpawnInfo(new Alchemy("Sugar"), -16.34f, -4.3f));
+                ItemSpawnList.Add(new ItemSpawnInfo(new Alchemy("Banana"), -10.0f, -17.84f));
+                ItemSpawnList.Add(new ItemSpawnInfo(new Alchemy("Rock"), -32.31f, 13.16f));
+                ItemSpawnList.Add(new ItemSpawnInfo(new Alchemy("Salt"), 54.21f, 7.69f));
                 break;
         }
 
@@ -90,8 +103,8 @@ public class LevelManager
         return ItemSpawnList;
     }
 
-    //Get the list of enemies that have to get spawned
-    public List<EnemySpawnInfo> GetEnemySpawnList(int level)
+    //Initialize the list of enemies that have to get spawned
+    public List<EnemySpawnInfo> InitializeEnemySpawnList(int level)
     {
         //Clear the spawnlist before adding things
         EnemySpawnList.Clear();
@@ -110,9 +123,9 @@ public class LevelManager
                 enemy.ItemDrop = new Armor(5.0f, "Wicked helm", Armor.ArmorType.Head);
                 EnemySpawnList.Add(new EnemySpawnInfo(enemy, 8.0f, 5.0f));
 
-                enemy = new Enemy("Dungeon Boss", 200.0f, 50.0f, 10.0f, 1.0f, 7.0f);
+                enemy = new Enemy("Dungeon Boss", 200.0f, 20.0f, 10.0f, 1.0f, 7.0f);
                 enemy.AttackDelay = 1.0f;
-                enemy.ItemDrop = new Quest("Minitaur head");
+                enemy.ItemDrop = new Quest("Minitaur Head");
                 EnemySpawnList.Add(new EnemySpawnInfo(enemy, 46.0f, -13.3f));
 
                 break;
@@ -120,5 +133,18 @@ public class LevelManager
 
         //Return the list
         return EnemySpawnList;
+    }
+
+    //Remove an item from the list of items that are spawned in the levels
+    public void RemoveItemFromLevel(Item item)
+    {
+        foreach (var itemSpawnInfo in ItemSpawnList.ToArray())
+        {
+            if (itemSpawnInfo.item == item)
+            {
+                ItemSpawnList.Remove(itemSpawnInfo);
+                return;
+            }
+        }
     }
 }

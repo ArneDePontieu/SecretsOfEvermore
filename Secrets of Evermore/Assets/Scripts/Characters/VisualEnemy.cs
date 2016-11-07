@@ -34,7 +34,7 @@ public class VisualEnemy : MonoBehaviour
         Move();
     }
 
-    //MOVE to the Enemy
+    //Move to the Enemy
     private void Move()
     {
         //List of potential targets
@@ -88,6 +88,7 @@ public class VisualEnemy : MonoBehaviour
         }
     }
 
+    //Do an attack
     private void Attack(Avatar avatar)
     {
         //Attack

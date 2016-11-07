@@ -3,12 +3,16 @@ using System.Collections;
 
 public abstract class Item
 {
-    //Type of item
+    //----------------------
+    //PUBLIC VARIABLES
+    //----------------------
+
     public enum ItemType
     {
         Armor,
         Weapon,
-        Quest
+        Quest,
+        Alchemy
     }
 
     //Item Type
@@ -17,11 +21,14 @@ public abstract class Item
     public int Amount = 1;
     //Name of the item
     public string Name;
+    //Visual item
+    public VisualItem VItem;
 
     //-------------------
-    //METHODS
+    //PUBLIC METHODS
     //--------------------
 
+    //Constructor
     public Item(string name)
     {
         Name = name;

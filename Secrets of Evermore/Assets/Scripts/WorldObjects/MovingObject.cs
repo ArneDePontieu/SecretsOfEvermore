@@ -5,20 +5,30 @@ using System.Collections.Generic;
 public class MovingObject : MonoBehaviour
 {
 
+    //----------------------
     //PUBLIC VARIABLES
+    //----------------------
+
     public float MoveSpeed;
 
     public bool IsMoving;
     public bool IsOpening = false;
+
     public List<int> ActivatedTriggersID = new List<int>();
 
     public Vector3 OpenPosition;
     public Vector3 ClosedPosition;
 
+    //----------------------
     //PRIVATE VARIABLES
+    //----------------------
+
     private Vector3 _distanceVector;
 
+    //----------------------
     //PRIVATE METHODS
+    //----------------------
+
     void Update()
     {
         if (IsOpening)
@@ -31,7 +41,11 @@ public class MovingObject : MonoBehaviour
         }
     }
 
+    //----------------------
     //PUBLIC METHODS
+    //----------------------
+
+    //Put the object in the closed position
     public void Close()
     {
         if (IsMoving)
@@ -48,6 +62,7 @@ public class MovingObject : MonoBehaviour
         }
     }
 
+    //Put the object in the open position
     public void Open()
     {
         if (IsMoving)
@@ -64,6 +79,7 @@ public class MovingObject : MonoBehaviour
         }
     }
 
+    //Add an activated trigger, this is a counter for multiple triggers
     public void AddActivatedTrigger(int ID)
     {
         //Set moving and opening to true
@@ -73,25 +89,25 @@ public class MovingObject : MonoBehaviour
         //bool to check if the trigger already exists in the list
         bool add = true;
 
-        foreach(var t in ActivatedTriggersID)
+        foreach (var t in ActivatedTriggersID)
         {
             //USE Id's to check if they're different
-            if(t== ID)
+            if (t == ID)
             {
                 add = false;
             }
         }
 
         //Add the object if it doesn't exist in the list already
-        if(add)
+        if (add)
         {
             ActivatedTriggersID.Add(ID);
         }
     }
 
+    //Remove an activated trigger
     public void RemoveActivatedTrigger(int ID)
     {
-
         //bool to check if the trigger already exists in the list
         bool remove = false;
 
@@ -110,12 +126,10 @@ public class MovingObject : MonoBehaviour
             ActivatedTriggersID.Remove(ID);
         }
 
-        if (ActivatedTriggersID.Count<=0)
+        if (ActivatedTriggersID.Count <= 0)
         {
             IsMoving = true;
             IsOpening = false;
         }
     }
-
-
 }

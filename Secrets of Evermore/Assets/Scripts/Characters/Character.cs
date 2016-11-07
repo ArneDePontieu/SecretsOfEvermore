@@ -17,14 +17,5 @@ public abstract class Character
     public float MaxHealth { get; set; }
     public float AttackDelay { get; set; }
     public float AttackCounter { get; set; }
-    
-    //----------------------
-    //PUBLIC METHODS
-    //----------------------
-
-    //public abstract void Update();
-    //public abstract void Move();
 
 }
-
-//+ contains all info related to chars (name, hp, weap, stats, level, att, def,...)

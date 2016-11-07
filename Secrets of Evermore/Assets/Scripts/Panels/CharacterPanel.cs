@@ -20,6 +20,10 @@ public class CharacterPanel : EvermorePanel
     //Height of a line
     private float _lineHeight = 30.0f;
 
+    //----------------------
+    //PUBLIC VARIABLES
+    //----------------------
+
     public struct StatValue
     {
         public string ItemName;
@@ -27,10 +31,6 @@ public class CharacterPanel : EvermorePanel
         public float Value;
         public GameObject DisplayObject;
     }
-
-    //----------------------
-    //PUBLIC VARIABLES
-    //----------------------
 
     public GameObject PanelText;
     public List<StatValue> CharacterStats = new List<StatValue>();
@@ -66,33 +66,6 @@ public class CharacterPanel : EvermorePanel
             //This text is not in the list so won't be updated, because of this we have to update it here
             pText.GetComponent<Text>().text = text;
         }
-    }
-
-    private StatValue GetStatValue(string typeName)
-    {
-        //The index where the statvalue is we want to return
-        var index = -1;
-
-        //Check where it is
-        for (int i = 0; i < CharacterStats.Count; i++)
-        {
-            if (CharacterStats[i].TypeName == typeName)
-            {
-                index = i;
-                break;
-            }
-        }
-
-        if (index >= 0)
-        {
-            return CharacterStats[index];
-        }
-        else
-        {
-            //return something in case we don't find what we need
-            return new StatValue();
-        }
-
     }
 
     //----------------------
@@ -160,7 +133,6 @@ public class CharacterPanel : EvermorePanel
                         break;
                     }
                 }
-
             }
         }
 
@@ -179,5 +151,4 @@ public class CharacterPanel : EvermorePanel
             statValue.DisplayObject.GetComponent<Text>().text = stream.ToString();
         }
     }
-
 }

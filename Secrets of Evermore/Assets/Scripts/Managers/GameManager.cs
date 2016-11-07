@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     public CharacterManager CharManagerInstance;
     public LevelManager LevelManagerInstance;
 
+    //Inventory
     public Inventory CharacterInventory;
-
 
     //----------------------
     //PRIVATE VARIABLES
@@ -31,19 +31,6 @@ public class GameManager : MonoBehaviour
     //PUBLIC METHODS
     //----------------------
 
-    //First thing that gets executed after object is created
-    void Start()
-    {
-
-    }
-
-    //What happens when the game updates
-    void Update()
-    {
-        CharManagerInstance.Refresh();
-        UIManagerInstance.Refresh();
-    }
-
     //Spawn an item
     public void SpawnItem(LevelManager.ItemSpawnInfo info)
     {
@@ -51,6 +38,7 @@ public class GameManager : MonoBehaviour
         GameObject item = (GameObject)Instantiate(VisualItem);
         //Add the item info to it
         item.GetComponent<VisualItem>().Info = info.item;
+        info.item.VItem = item.GetComponent<VisualItem>();
         //Set the world position of the item
         item.transform.position = new Vector3(info.xPos, info.yPos, 0);
     }
@@ -76,7 +64,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            return damage / 2.0f + (damage / 2.0f) * (defence/damage);
+            return damage / 2.0f + (damage / 2.0f) * (defence / damage);
         }
     }
 
@@ -84,6 +72,7 @@ public class GameManager : MonoBehaviour
     //PRIVATE METHODS
     //----------------------
 
+    //When the manager first gets created
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -115,18 +104,24 @@ public class GameManager : MonoBehaviour
         CharManagerInstance.Initialize();
 
         //Spawn items
-        foreach (var it in LevelManagerInstance.GetItemSpawnList(level))
+        foreach (var it in LevelManagerInstance.InitializeItemSpawnList(level))
         {
             SpawnItem(it);
+
         }
 
         //Spawn Enemies
-        foreach (var it in LevelManagerInstance.GetEnemySpawnList(level))
+        foreach (var it in LevelManagerInstance.InitializeEnemySpawnList(level))
         {
             SpawnEnemy(it);
             CharManagerInstance.EnemyList.Add(it.enemy);
         }
     }
 
-
+    //What happens when the game updates
+    void Update()
+    {
+        CharManagerInstance.Refresh();
+        UIManagerInstance.Refresh();
+    }
 }

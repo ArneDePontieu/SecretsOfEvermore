@@ -13,9 +13,8 @@ public class InventoryPanel : EvermorePanel
     private float _yStartPos = 232;
 
     //----------------------
-    //PUBLIC METHODS
+    //PUBLIC VARIABLES
     //----------------------
-    //public List<Item> ItemList = new List<Item>();
 
     public GameObject InventorySlot;
     public List<GameObject> InvSlots = new List<GameObject>();
@@ -70,9 +69,11 @@ public class InventoryPanel : EvermorePanel
                 case Item.ItemType.Quest:
                     color = Color.yellow;
                     break;
+                case Item.ItemType.Alchemy:
+                    color = Color.blue;
+                    break;
             }
             InvSlots[i].GetComponent<Image>().color = color;
         }
     }
-
 }

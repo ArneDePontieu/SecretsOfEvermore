@@ -5,6 +5,11 @@ using System;
 public class Spear : Weapon
 {
 
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
+
+    //Constructor
     public Spear(DamageType dType, float attackPower, string name) : base(dType, attackPower, name)
     {
         TypeOfWeapon = WeaponType.Spear;
@@ -25,7 +30,7 @@ public class Spear : Weapon
             //Hit the enemy with standard damage
             if (hit.collider.gameObject.tag == "Enemy" && hit.distance <= 3.0f)
             {
-                hit.collider.gameObject.GetComponent<VisualEnemy>().Info.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage()*0.75f);
+                hit.collider.gameObject.GetComponent<VisualEnemy>().Info.TakeDamage(GameManager.Instance.CharManagerInstance.GetSelectedCharacterDamage() * 0.75f);
             }
         }
     }

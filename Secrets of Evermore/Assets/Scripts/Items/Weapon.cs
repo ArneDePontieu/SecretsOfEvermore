@@ -4,6 +4,10 @@ using System.Collections;
 public abstract class Weapon : Item
 {
 
+    //----------------------
+    //PUBLIC VARIABLES
+    //----------------------
+
     public float AttackPower;
     public DamageType TypeOfDamage;
     public WeaponType TypeOfWeapon;
@@ -13,7 +17,6 @@ public abstract class Weapon : Item
         Magical,
         Physical
     }
-
     public enum WeaponType
     {
         Axe,
@@ -21,6 +24,11 @@ public abstract class Weapon : Item
         Sword
     }
 
+    //----------------------
+    //PUBLIC METHODS
+    //----------------------
+
+    //Constructor
     public Weapon(DamageType dType, float attackPower, string name) : base(name)
     {
         TypeOfDamage = dType;
@@ -34,7 +42,7 @@ public abstract class Weapon : Item
 
         //Do a raycast to check if an enemy is in front of you
         RaycastHit2D hit = Physics2D.Raycast(
-            GameManager.Instance.CharManagerInstance.GetSelectedCharacter().VCharacter.transform.position, 
+            GameManager.Instance.CharManagerInstance.GetSelectedCharacter().VCharacter.transform.position,
             GameManager.Instance.CharManagerInstance.GetSelectedCharacter().VCharacter.ForwardVector,
             5.0f,
             LayerMask.GetMask("EnemyLayer"));

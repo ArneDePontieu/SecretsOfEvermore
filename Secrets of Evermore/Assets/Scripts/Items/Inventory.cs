@@ -5,14 +5,22 @@ using System.Collections.Generic;
 public class Inventory
 {
 
-    //PRIVATE  VARIABLES
+    //----------------------
+    //PRIVATE VARIABLES
+    //----------------------
+
     private bool IsInvFull = false;
     private int _invSize = 25;
 
+    //----------------------
     //PUBLIC VARIABLES
+    //----------------------
+
     public List<Item> ItemList = new List<Item>();
 
+    //----------------------
     //PUBLIC METHODS
+    //----------------------
 
     public void Initialize()
     {
@@ -27,6 +35,7 @@ public class Inventory
         AddItem(new Armor(1, "Leather Belt", Armor.ArmorType.Belt));
     }
 
+    //Get the currently equipped weapon
     public Weapon GetWeapon()
     {
         foreach (var item in ItemList)
@@ -37,9 +46,11 @@ public class Inventory
             }
         }
 
+        //Return a standard wooden sword if no weapon is found
         return new Sword(Weapon.DamageType.Physical, 1.0f, "Wooden Sword") as Weapon;
     }
 
+    //Add an item to the inventory
     public bool AddItem(Item item)
     {
         //Check the inventory to see if you found an upgrade
@@ -61,6 +72,7 @@ public class Inventory
                             {
                                 ItemList[i] = item;
                                 GameManager.Instance.CharManagerInstance.UpdateCharacterStats();
+                                item.VItem = null;
                                 return true;
                             }
                         }
@@ -76,6 +88,7 @@ public class Inventory
                             {
                                 ItemList[i] = item;
                                 GameManager.Instance.CharManagerInstance.UpdateCharacterStats();
+                                item.VItem = null;
                                 return true;
                             }
                         }
@@ -101,6 +114,7 @@ public class Inventory
         return false;
     }
 
+    //Remove an item from the inventory
     public void RemoveItem(Item item)
     {
         //Remove an item from the list
@@ -108,6 +122,7 @@ public class Inventory
         IsInvFull = false;
     }
 
+    //Remove an item from the inventory
     public void RemoveItem(string itemName)
     {
         //Remove an item from the list
